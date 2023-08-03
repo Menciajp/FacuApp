@@ -4,28 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec26083-5826-4439-aead-804aea5b1c04" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Persistencia/UnidadPersistencia.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Persistencia/UsuarioPersis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/Alertas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/IndexController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/MenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/objetos/Instituto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/objetos/Usuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Css/general.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/index.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/menu.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/imagenes/User.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/imagenes/newUser.png" afterDir="false" />
+    <list default="true" id="9ec26083-5826-4439-aead-804aea5b1c04" name="Changes" comment="3/8/2023">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UIcontrollers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/menu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +67,18 @@
       <option name="presentableId" value="Default" />
       <updated>1691014170232</updated>
     </task>
+    <task id="LOCAL-00001" summary="3/8/2023">
+      <created>1691100561728</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1691100561728</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="3/8/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="3/8/2023" />
   </component>
 </project>
