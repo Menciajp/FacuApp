@@ -1,0 +1,93 @@
+/*Fondo general*/
+
+.boxes {
+    -fx-background-color : #FFFF;
+    -fx-border-color : linear-gradiente(to bottom right,#14213D,#000000);
+    -fx-border-width : 3px;
+}
+
+.fd-background {
+    -fx-background-color : linear-gradiente(to bottom right,#14213D,#000000);
+}
+
+.titulo {
+    -fx-background-color : transparent;
+    -fx-font-family : 'Carlito';
+    -fx-font-weight: bold;
+    -fx-font-size : 45px;
+    -fx-text-fill: #FFFF;
+}
+
+.lblAmarillo{
+    -fx-background-color : transparent;
+    -fx-font-family : 'Carlito';
+    -fx-font-size : 16px;
+    -fx-text-fill: #FCA311;
+}
+
+.lblBlanco{
+    -fx-background-color : transparent;
+        -fx-font-family : 'Carlito';
+        -fx-font-weight: bold;
+        -fx-font-size : 20px;
+        -fx-text-fill: #FFFF;
+}
+.lblAzul{
+    -fx-text-fill:#14213D;
+    -fx-font-size : 16px;
+    -fx-font-family : 'Carlito';
+
+}
+
+.btnFondoOscuro{
+    -fx-background-color : transparent;
+    -fx-text-fill: #FFFF;
+    -fx-font-family : 'Carlito';
+    -fx-border-color : #FCA311;
+    -fx-font-size : 16px;
+}
+
+.btnFondoOscuro:hover{
+    -fx-background-color : #FCA311;
+    -fx-text-fill: linear-gradiente(to bottom right,#14213D,#000000);
+    -fx-font-family : 'Carlito';
+}
+
+.textField{
+    -fx-background-color : transparent;
+    -fx-text-fill: #000000;
+    -fx-font-family : 'Carlito';
+    -fx-border-color : #FCA311;
+    -fx-font-size : 14px;
+}
+.textField:focused,
+.textField:hover{
+    -fx-background-color : #E5E5E5;
+    -fx-text-fill: #000000;
+    -fx-font-family : 'Carlito';
+    -fx-border-color : #FCA311;
+    -fx-font-size : 14px;
+}
+
+.textField-two{
+    -fx-background-color : #E5E5E5;
+    -fx-text-fill:#14213D;
+    -fx-font-family : 'Carlito';
+    -fx-border-color : #FCA311;
+    -fx-font-size : 14px;
+}
+
+.btnFondoClaro{
+    -fx-background-color : linear-gradiente(to bottom right,#14213D,#000000);
+    -fx-text-fill: #FFFF;
+    -fx-font-family : 'Carlito';
+    -fx-font-size : 16px;
+    -fx-border-color : linear-gradiente(to bottom right,#14213D,#000000);
+    -fx-border-color : #FFFF;
+}
+
+.btnFondoClaro:hover{
+    -fx-text-fill: #FCA311;
+    -fx-border-color : #FCA311;
+}
+
