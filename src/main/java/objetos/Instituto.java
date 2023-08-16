@@ -1,16 +1,12 @@
 package objetos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-public class Instituto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int idInstituto;
+@AttributeOverride(name = "id", column = @Column(name = "codigo"))
+public class Instituto extends Entidad{
 
+    @Column(unique = true)
     String nombreInstituto;
 
     //constructores
@@ -22,11 +18,11 @@ public class Instituto {
     }
 
     public int getIdInstituto() {
-        return idInstituto;
+        return super.getId();
     }
 
     public void setIdInstituto(int idInstituto) {
-        this.idInstituto = idInstituto;
+        super.setId(idInstituto);
     }
 
     public String getNombreInstituto() {

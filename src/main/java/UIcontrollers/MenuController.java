@@ -1,20 +1,27 @@
 package UIcontrollers;
 
+import Persistencia.UnidadPersistencia;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import objetos.Instituto;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.List;
 
-public class MenuController {
-    private Stage stage;
+public class MenuController extends Controladora {
+    private List<Instituto> institutos;
+    ObservableList<String> nombresInst = FXCollections.observableArrayList();
+
     @FXML
     private Button btn_crear;
 
@@ -23,6 +30,8 @@ public class MenuController {
 
     @FXML
     private Button btn_docente;
+    @FXML
+    private Button btn_ingresar;
 
     @FXML
     private Button btn_institutos;
@@ -34,7 +43,7 @@ public class MenuController {
     private Button btn_volverMenu;
 
     @FXML
-    private MenuButton mb_institutos;
+    private ComboBox<String> cb_seleccion;
 
     @FXML
     private Pane pn_crearInstituto;
@@ -48,38 +57,80 @@ public class MenuController {
     @FXML
     private TextField tf_crearInst;
 
-    public void cambioPantalla(ActionEvent event){
-        if(event.getSource() == btn_volver || event.getSource() ==btn_volverMenu){
+    @FXML
+    private void initialize(){
+        cargarCbInstitutos();
+    }
+    public void btn_crear(){
+        if(!tf_crearInst.getText().isEmpty()){
+            UnidadPersistencia up = new UnidadPersistencia();
+            Instituto inst = new Instituto(tf_crearInst.getText());
+            if(up.nuevoInstituto(inst)){
+                Alertas.avisoAccion("Instituto creado con exito!");
+                pn_crearInstituto.setVisible(false);
+                pn_instSelec.setVisible(true);
+                cargarCbInstitutos();
+            }else{
+                Alertas.avisoError("El instituto ya existe!");
+                pn_crearInstituto.setVisible(false);
+                pn_instSelec.setVisible(true);
+
+            }
+        }
+    }
+
+    public void btn_ingresar() throws IOException {
+        cambioEscena("../fxml/gestion.fxml");
+    }
+    public void saltoPantallas(ActionEvent event){
+        if(event.getSource() == btn_volver){
             pn_crearInstituto.setVisible(false);
-            pn_instSelec.setVisible(false);
-            pn_seleccion.setVisible(true);
+            pn_instSelec.setVisible(true);
         }else if (event.getSource() == btn_institutos){
             pn_instSelec.setVisible(true);
             pn_seleccion.setVisible(false);
         }else if(event.getSource() == btn_creelo){
             pn_instSelec.setVisible(false);
             pn_crearInstituto.setVisible(true);
+        }else if(event.getSource() == btn_volverMenu){
+            pn_instSelec.setVisible(false);
+            pn_seleccion.setVisible(true);
         }
     }
-    private void changeScene(String fxml) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+
+    private void cargarCbInstitutos(){
+        nombresInst.clear();
+        UnidadPersistencia up = new UnidadPersistencia();
+        this.institutos = up.verInstitutos();
+        for (Instituto instituto:
+             this.institutos) {
+            nombresInst.add(instituto.getNombreInstituto());
+        }
+        cb_seleccion.setItems(nombresInst);
+    }
+
+    @Override
+    protected void cambioEscena(String url) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
 
         Parent root = loader.load();
 
         // Obtener la instancia de la controladora de la ventana cargada
-        MenuController menuController = loader.getController();
+        GestionController gestionController = loader.getController();
+        Instituto insti = institutos.get(nombresInst.indexOf(cb_seleccion.getValue()));
+        gestionController.setInstituto(insti);
+        gestionController.setStage(getStage());
         // Crear una nueva escena
         Scene scene = new Scene(root);
 
         // Obtener el escenario actual
-        Stage stage = this.stage;
+        Stage stage = getStage();
 
         // Establecer la nueva escena en el escenario
         stage.setScene(scene);
         stage.show();
         stage.centerOnScreen();
     }
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
+
+
 }

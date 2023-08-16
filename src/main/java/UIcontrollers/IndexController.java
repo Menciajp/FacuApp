@@ -11,11 +11,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import objetos.Instituto;
 import objetos.Usuario;
 
 import java.io.IOException;
 
-public class IndexController {
+public class IndexController extends Controladora {
 
 
     @FXML
@@ -47,7 +48,6 @@ public class IndexController {
 
     @FXML
     private TextField tf_usuariosu;
-    private Stage stage;
 
 
     //cambio de login a singUp
@@ -63,7 +63,7 @@ public class IndexController {
 
     //crear Usuario
     public void crearUsuario() throws IOException {
-        if(pf_contraseñasu.getText().length()>4) {
+        if(pf_contraseñasu.getText().length()>3) {
             Usuario user = new Usuario(tf_usuariosu.getText(), pf_contraseñasu.getText());
             UnidadPersistencia up = new UnidadPersistencia();
             if (up.nuevoUsuario(user)) {
@@ -74,7 +74,7 @@ public class IndexController {
                 Alertas.avisoError("Usurio ya existente.");
             }
         }else{
-            Alertas.avisoError("La contraseña debe ser mayor a 4 digitos");
+            Alertas.avisoError("La contraseña debe ser mayor a 3 digitos");
         };
     }
     //login
@@ -85,7 +85,7 @@ public class IndexController {
             Usuario usuario = up.verUsuario(user);
             if (usuario != null){
                 Alertas.avisoAccion("INGRESOOO");
-                changeScene();
+                cambioEscena("../fxml/menu.fxml");
             }else{
                 Alertas.avisoError("Contraseña y/o usuario erroneo.");
             }
@@ -93,19 +93,22 @@ public class IndexController {
             Alertas.avisoError("Complete los campos.");
         }
     }
-    private void changeScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
+
+
+    @Override
+    protected void cambioEscena(String url) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
 
         Parent root = loader.load();
 
         // Obtener la instancia de la controladora de la ventana cargada
         MenuController menuController = loader.getController();
-        menuController.setStage(this.stage);
+        menuController.setStage(getStage());
         // Crear una nueva escena
         Scene scene = new Scene(root);
 
         // Obtener el escenario actual
-        Stage stage = this.stage;
+        Stage stage = getStage();
 
         // Establecer la nueva escena en el escenario
         stage.setScene(scene);
@@ -113,9 +116,6 @@ public class IndexController {
         stage.centerOnScreen();
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
 
 }
 

@@ -4,10 +4,8 @@ package objetos;
 import jakarta.persistence.*;
 
 @Entity
-public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idUsuario;
+public class Usuario extends Entidad{
+
     @Column(unique = true)
     private String username;
     private String password;
@@ -17,7 +15,7 @@ public class Usuario {
         this.password = password;
     }
     public Usuario(int idUsuario, String username, String password) {
-        this.idUsuario = idUsuario;
+        super.setId(idUsuario);
         this.username = username;
         this.password = password;
     }
@@ -26,11 +24,11 @@ public class Usuario {
     //getters y setters
 
     public int getIdUsuario() {
-        return idUsuario;
+        return super.getId();
     }
 
     public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+        super.setId(idUsuario);
     }
 
     public String getUsername() {

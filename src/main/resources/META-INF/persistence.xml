@@ -6,6 +6,9 @@
     <persistence-unit name="Persistencia" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>objetos.Usuario</class>
+        <class>objetos.Docente</class>
+        <class>objetos.Instituto</class>
+        <class>objetos.Asignatura</class>
         <!-- Other entity classes -->
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Facultad"/>

@@ -7,9 +7,9 @@ import objetos.Usuario;
 import java.util.List;
 
 
-public class UsuarioPersis {
+public class UsuarioPersis{
 
-    public static boolean crearUsuario(Usuario user, EntityManagerFactory emf) {
+    public static boolean crear(Usuario user, EntityManagerFactory emf) {
         try {
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -34,6 +34,7 @@ public class UsuarioPersis {
             }
         }
         userlist.clear();
+        em.close();
         return null;
     }
 }
