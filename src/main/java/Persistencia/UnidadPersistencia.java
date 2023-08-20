@@ -2,6 +2,8 @@ package Persistencia;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import objetos.Cargo;
 import objetos.Docente;
 import objetos.Instituto;
@@ -51,13 +53,24 @@ public class UnidadPersistencia {
         return DocentePersis.existeDocente(emf, dni);
     }
 
-    public boolean existeCargo(int id_docente,int id_instituto){
-        return  CargoPersis.existeCargo(emf, id_docente, id_instituto);
+    public Docente traerDocente(String dni){ return DocentePersis.traerDocente(emf,dni);}
+
+    public ObservableList<Docente> traerTodosDocentes(Instituto instituto){
+        List<Docente> docentes = DocentePersis.traerTodos(emf,instituto);
+        ObservableList<Docente> retorno = FXCollections.observableArrayList(docentes);
+        return retorno;
+    }
+    public boolean existeCargo(Docente docente,Instituto instituto){
+        return  CargoPersis.existeCargo(emf, docente, instituto);
     }
 
     public boolean crearCargo(int horas, Docente docente, Instituto instituto){
         Cargo cargo = new Cargo(horas, docente, instituto);
         return CargoPersis.crearCargo(emf, cargo);
+    }
+
+    public boolean existeAsignatura(String asignatura){
+        return AsignaturaPersis.existeAsignatura(emf, asignatura);
     }
 
 }

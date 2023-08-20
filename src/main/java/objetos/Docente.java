@@ -14,6 +14,11 @@ public class Docente extends Entidad {
     private String apellido;
     private Date fechNac;
     private String notifDir;
+    @OneToMany(mappedBy = "docente")
+    private List<Asignatura> asignaturas;
+
+    @OneToMany(mappedBy = "docente")
+    private List<Cargo> cargos;
 
 
     public Docente(){}
@@ -25,9 +30,46 @@ public class Docente extends Entidad {
         this.notifDir = notifDir;
     }
 
-    @OneToMany(mappedBy = "docente")
-    private List<Asignatura> asignaturas;
 
-    @OneToMany(mappedBy = "docente")
-    private List<Cargo> cargos;
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public Date getFechNac() {
+        return fechNac;
+    }
+
+    public void setFechNac(Date fechNac) {
+        this.fechNac = fechNac;
+    }
+
+    public String getNotifDir() {
+        return notifDir;
+    }
+
+    public void setNotifDir(String notifDir) {
+        this.notifDir = notifDir;
+    }
+
+
 }

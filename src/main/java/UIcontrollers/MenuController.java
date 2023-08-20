@@ -29,18 +29,10 @@ public class MenuController extends Controladora {
     private Button btn_creelo;
 
     @FXML
-    private Button btn_docente;
-    @FXML
     private Button btn_ingresar;
 
     @FXML
-    private Button btn_institutos;
-
-    @FXML
     private Button btn_volver;
-
-    @FXML
-    private Button btn_volverMenu;
 
     @FXML
     private ComboBox<String> cb_seleccion;
@@ -50,9 +42,6 @@ public class MenuController extends Controladora {
 
     @FXML
     private Pane pn_instSelec;
-
-    @FXML
-    private Pane pn_seleccion;
 
     @FXML
     private TextField tf_crearInst;
@@ -86,15 +75,9 @@ public class MenuController extends Controladora {
         if(event.getSource() == btn_volver){
             pn_crearInstituto.setVisible(false);
             pn_instSelec.setVisible(true);
-        }else if (event.getSource() == btn_institutos){
-            pn_instSelec.setVisible(true);
-            pn_seleccion.setVisible(false);
         }else if(event.getSource() == btn_creelo){
             pn_instSelec.setVisible(false);
             pn_crearInstituto.setVisible(true);
-        }else if(event.getSource() == btn_volverMenu){
-            pn_instSelec.setVisible(false);
-            pn_seleccion.setVisible(true);
         }
     }
 

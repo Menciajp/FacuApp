@@ -5,25 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ec26083-5826-4439-aead-804aea5b1c04" name="Changes" comment="3/8/2023">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Persistencia/CargoPersis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Persistencia/DocentePersis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Persistencia/InstitutoPersis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/Controladora.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/GestionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/objetos/Asignatura.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/objetos/Cargo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/objetos/Docente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/objetos/Entidad.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/gestion.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Persistencia/AsignaturaPersis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Persistencia/CargoPersis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Persistencia/CargoPersis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Persistencia/DocentePersis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Persistencia/DocentePersis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Persistencia/UnidadPersistencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Persistencia/UnidadPersistencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Persistencia/UsuarioPersis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Persistencia/UsuarioPersis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UIcontrollers/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UIcontrollers/Controladora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/Controladora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UIcontrollers/GestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/GestionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UIcontrollers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/objetos/Instituto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objetos/Instituto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/objetos/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objetos/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/objetos/Cargo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objetos/Cargo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/objetos/Docente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objetos/Docente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Css/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Css/general.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/gestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/gestion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/index.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/index.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/menu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691101581183</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="3/8/2023">
+      <created>1692181599874</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692181599874</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

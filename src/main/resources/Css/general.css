@@ -47,10 +47,13 @@
     -fx-font-size : 16px;
 }
 
+.btnFondoOscuro:disabled,
 .btnFondoOscuro:hover{
     -fx-background-color : #FCA311;
     -fx-text-fill: linear-gradiente(to bottom right,#14213D,#000000);
     -fx-font-family : 'Carlito';
+    -fx-cursor: hand;
+    -fx-opacity:1;
 }
 
 .textField{
@@ -89,5 +92,7 @@
 .btnFondoClaro:hover{
     -fx-text-fill: #FCA311;
     -fx-border-color : #FCA311;
+    -fx-cursor: hand;
+    -fx-opacity:1;
 }
 

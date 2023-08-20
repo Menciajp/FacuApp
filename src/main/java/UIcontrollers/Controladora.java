@@ -19,5 +19,7 @@ public abstract class Controladora {
     }
 
 
-    protected void cambioEscena(String url) throws IOException{};
+    protected void cambioEscena(String url) throws IOException{
+
+    };
 }

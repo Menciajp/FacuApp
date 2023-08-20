@@ -12,13 +12,15 @@ import java.sql.Date;
 public class Cargo extends  Entidad{
     private int horas;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "docente_id")
     private Docente docente;
     @ManyToOne
     @JoinColumn(name = "instituto_id")
     private Instituto instituto;
 
+
+    public Cargo(){}
     public Cargo(int horas, Docente docente, Instituto instituto) {
         this.horas = horas;
         this.docente = docente;
