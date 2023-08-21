@@ -4,10 +4,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import objetos.Cargo;
-import objetos.Docente;
-import objetos.Instituto;
-import objetos.Usuario;
+import objetos.*;
 
 import java.sql.Date;
 import java.util.List;
@@ -69,8 +66,12 @@ public class UnidadPersistencia {
         return CargoPersis.crearCargo(emf, cargo);
     }
 
-    public boolean existeAsignatura(String asignatura){
-        return AsignaturaPersis.existeAsignatura(emf, asignatura);
+    public boolean existeAsignatura(String asignatura, Instituto instituto){
+        return AsignaturaPersis.existeAsignatura(emf, asignatura, instituto);
     }
 
+    public boolean crearAsignatura(String nombre, Docente docente, String descripcion, Instituto instituto){
+        Asignatura asignatura = new Asignatura(nombre,descripcion,docente, instituto);
+        return AsignaturaPersis.crearAsignatura(emf, asignatura);
+    }
 }

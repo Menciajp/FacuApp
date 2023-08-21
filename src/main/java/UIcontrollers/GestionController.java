@@ -106,6 +106,8 @@ public class GestionController extends Controladora{
             mostrarPane(btn_inscribirDoc,pn_inscribirDocente);
         });
 
+        btn_crear.setOnAction(event -> {crearAsignatura();});
+
 
 
     }
@@ -169,7 +171,32 @@ public class GestionController extends Controladora{
         tv_docentes.setItems(listaDocentes);
     }
     private void crearAsignatura(){
+        UnidadPersistencia up = new UnidadPersistencia();
+        if (tf_nombreAsignatura.getText().isEmpty() || ta_descripcion.getText().isEmpty()) {
+            Alertas.avisoError("Complete todos los campos.");
+        } else if (up.existeAsignatura(tf_nombreAsignatura.getText(), instituto)) {
+            Alertas.avisoError("Ya existe la asignatura");
 
+        }else{
+            Alert decision = new Alert(Alert.AlertType.CONFIRMATION);
+            decision.setHeaderText("Seguro que desea crear una asignatura con la siguiente información?");
+            decision.setContentText(
+                    "Nombre: " + tf_nombreAsignatura.getText() + "\n"
+                    + "Docente: " + listaDocentes.get(tv_docentes.getFocusModel().getFocusedIndex()).getNombre()
+                    + " " + listaDocentes.get(tv_docentes.getFocusModel().getFocusedIndex()).getApellido() +
+                    "\n" + "Descripción: " + ta_descripcion.getText());
+            decision.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK){
+                    if( up.crearAsignatura(tf_nombreAsignatura.getText(),
+                        listaDocentes.get(tv_docentes.getFocusModel().getFocusedIndex()),
+                        ta_descripcion.getText(), instituto)){
+                            Alertas.avisoAccion("Asignatura creada.");
+                    }else{
+                        Alertas.avisoError("Error en la creación de la asignatura.");
+                    };
+                }
+            });
+        }
     }
     private void mostrarPane(Button botonSelec, Pane paneSelec){
         Button botones[] = {btn_inscribirDoc,btn_crearAsig,btn_modifAsig,btn_modifCarg};

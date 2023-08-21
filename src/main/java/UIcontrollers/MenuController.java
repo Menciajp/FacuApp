@@ -69,7 +69,11 @@ public class MenuController extends Controladora {
     }
 
     public void btn_ingresar() throws IOException {
-        cambioEscena("../fxml/gestion.fxml");
+        try {
+            cambioEscena("../fxml/gestion.fxml");
+        }catch (Exception e){
+            Alertas.avisoError("Seleccione un instituto.");
+        }
     }
     public void saltoPantallas(ActionEvent event){
         if(event.getSource() == btn_volver){
