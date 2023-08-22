@@ -12,18 +12,15 @@ import java.util.List;
 public class DocentePersis {
 
     public static  boolean crearDocente(EntityManagerFactory emf, Docente docente) {
-        EntityManager em = null;
-        try {
-            em = emf.createEntityManager();
+        try{
+            EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
             em.persist(docente);
             em.getTransaction().commit();
-
+            em.close();
             return true;
         } catch (Exception e) {
             return false;
-        } finally {
-            em.close();
         }
 
     }
@@ -66,7 +63,9 @@ public class DocentePersis {
         query.setParameter("idInsti", instituto);
         em.getTransaction().commit();
         List<Docente> docentes = query.getResultList();
+        em.close();
         return docentes;
+
     }
 
 }

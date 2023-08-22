@@ -84,7 +84,7 @@ public class IndexController extends Controladora {
             UnidadPersistencia up = new UnidadPersistencia();
             Usuario usuario = up.verUsuario(user);
             if (usuario != null){
-                Alertas.avisoAccion("INGRESOOO");
+                Alertas.avisoAccion("Bienvenido");
                 cambioEscena("../fxml/menu.fxml");
             }else{
                 Alertas.avisoError("Contraseña y/o usuario erroneo.");

@@ -1,12 +1,11 @@
 package Persistencia;
 
-import jakarta.persistence.Entity;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
-import javafx.collections.ObservableList;
 import objetos.Instituto;
-import objetos.Usuario;
+
 
 import java.util.List;
 
@@ -29,6 +28,8 @@ public class InstitutoPersis {
         em.getTransaction().begin();
         Query query = em.createQuery("Select s from Instituto s");
         List<Instituto> instList = query.getResultList();
+        em.close();
         return instList;
+
     }
 }

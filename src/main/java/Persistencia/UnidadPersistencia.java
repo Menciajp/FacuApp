@@ -74,4 +74,20 @@ public class UnidadPersistencia {
         Asignatura asignatura = new Asignatura(nombre,descripcion,docente, instituto);
         return AsignaturaPersis.crearAsignatura(emf, asignatura);
     }
+
+    public List<Asignatura>traerTodasAsignaturas(Instituto instituto){
+        return AsignaturaPersis.traerTodasAsignaturas(emf,instituto);
+    }
+
+    public boolean updateAsignatura(Asignatura asignatura){
+        return AsignaturaPersis.editarAsignatura(emf,asignatura);
+    }
+
+    public boolean deleteAsignatura(Asignatura asignatura){return AsignaturaPersis.borrarAsignatura(emf,asignatura);}
+
+    public ObservableList<Cargo> traerTodosCargos(Instituto instituto) {
+        List<Cargo> cargos = CargoPersis.traerTodosCargos(emf,instituto);
+        ObservableList<Cargo> retorno = FXCollections.observableArrayList(cargos);
+        return retorno;
+    }
 }

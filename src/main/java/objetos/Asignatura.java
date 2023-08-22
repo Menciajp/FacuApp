@@ -24,4 +24,36 @@ public class Asignatura extends Entidad{
         this.docente = docente;
         this.instituto = instituto;
     }
+
+    public String getNombre_asignatura() {
+        return nombre_asignatura;
+    }
+
+    public void setNombre_asignatura(String nombre_asignatura) {
+        this.nombre_asignatura = nombre_asignatura;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Docente getDocente() {
+        return docente;
+    }
+
+    public void setDocente(Docente docente) {
+        this.docente = docente;
+    }
+
+    public Instituto getInstituto() {
+        return instituto;
+    }
+
+    public void setInstituto(Instituto instituto) {
+        this.instituto = instituto;
+    }
 }

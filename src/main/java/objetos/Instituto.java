@@ -39,4 +39,8 @@ public class Instituto extends Entidad{
     public void setNombreInstituto(String nombreInstituto) {
         this.nombreInstituto = nombreInstituto;
     }
+
+    public List<Asignatura> getAsignaturas() {
+        return asignaturas;
+    }
 }
