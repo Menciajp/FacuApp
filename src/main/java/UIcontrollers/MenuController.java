@@ -52,9 +52,8 @@ public class MenuController extends Controladora {
     }
     public void btn_crear(){
         if(!tf_crearInst.getText().isEmpty()){
-            UnidadPersistencia up = new UnidadPersistencia();
             Instituto inst = new Instituto(tf_crearInst.getText());
-            if(up.nuevoInstituto(inst)){
+            if(getUp().nuevoInstituto(inst)){
                 Alertas.avisoAccion("Instituto creado con exito!");
                 pn_crearInstituto.setVisible(false);
                 pn_instSelec.setVisible(true);
@@ -87,8 +86,7 @@ public class MenuController extends Controladora {
 
     private void cargarCbInstitutos(){
         nombresInst.clear();
-        UnidadPersistencia up = new UnidadPersistencia();
-        this.institutos = up.verInstitutos();
+        this.institutos = getUp().verInstitutos();
         for (Instituto instituto:
              this.institutos) {
             nombresInst.add(instituto.getNombreInstituto());
@@ -106,17 +104,13 @@ public class MenuController extends Controladora {
         GestionController gestionController = loader.getController();
         Instituto insti = institutos.get(nombresInst.indexOf(cb_seleccion.getValue()));
         gestionController.setInstituto(insti);
-        gestionController.setStage(getStage());
         // Crear una nueva escena
         Scene scene = new Scene(root);
 
-        // Obtener el escenario actual
-        Stage stage = getStage();
-
         // Establecer la nueva escena en el escenario
-        stage.setScene(scene);
-        stage.show();
-        stage.centerOnScreen();
+        getStage().setScene(scene);
+        getStage().show();
+        getStage().centerOnScreen();
     }
 
 

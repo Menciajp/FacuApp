@@ -7,9 +7,9 @@ import objetos.Usuario;
 import java.util.List;
 
 
-public class UsuarioPersis{
+class UsuarioPersis{
 
-    public static boolean crear(Usuario user, EntityManagerFactory emf) {
+    protected static boolean crear(Usuario user, EntityManagerFactory emf) {
         try {
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -22,7 +22,7 @@ public class UsuarioPersis{
         }
     }
 
-    public static Usuario verUsuario(Usuario user, EntityManagerFactory emf) {
+    protected static Usuario verUsuario(Usuario user, EntityManagerFactory emf) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Query query = em.createQuery("Select s from Usuario s");

@@ -9,8 +9,8 @@ import objetos.Instituto;
 
 import java.util.List;
 
-public class InstitutoPersis {
-    public static boolean crearInstituto(Instituto instituto, EntityManagerFactory emf) {
+class InstitutoPersis {
+    protected static boolean crearInstituto(Instituto instituto, EntityManagerFactory emf) {
         try {
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -23,7 +23,7 @@ public class InstitutoPersis {
         }
     }
 
-    public static List<Instituto> traerInstitutos(EntityManagerFactory emf){
+    protected static List<Instituto> traerInstitutos(EntityManagerFactory emf){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Query query = em.createQuery("Select s from Instituto s");

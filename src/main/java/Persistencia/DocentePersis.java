@@ -6,12 +6,13 @@ import jakarta.persistence.TypedQuery;
 import objetos.Cargo;
 import objetos.Docente;
 import objetos.Instituto;
+import org.hibernate.mapping.Selectable;
 
 import java.util.List;
 
-public class DocentePersis {
+ class DocentePersis {
 
-    public static  boolean crearDocente(EntityManagerFactory emf, Docente docente) {
+    protected static  boolean crearDocente(EntityManagerFactory emf, Docente docente) {
         try{
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -24,7 +25,7 @@ public class DocentePersis {
         }
 
     }
-    public static boolean existeDocente (EntityManagerFactory emf, String dni){
+    protected static boolean existeDocente (EntityManagerFactory emf, String dni){
         try {
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -40,7 +41,7 @@ public class DocentePersis {
             return false;
         }
     }
-    public static Docente traerDocente(EntityManagerFactory emf, String dni){
+    protected static Docente traerDocente(EntityManagerFactory emf, String dni){
         try {
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -56,7 +57,7 @@ public class DocentePersis {
         }
     }
 
-    public static List<Docente> traerTodos(EntityManagerFactory emf, Instituto instituto){
+    protected static List<Docente> traerTodos(EntityManagerFactory emf, Instituto instituto){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         TypedQuery<Docente> query = em.createQuery("SELECT c.docente FROM Cargo c WHERE c.instituto = :idInsti", Docente.class);
@@ -68,5 +69,19 @@ public class DocentePersis {
 
     }
 
+    protected static Boolean eliminarDocente(EntityManagerFactory emf, Docente docente) {
+        try {
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();
+            Docente docenteViejo = em.find(Docente.class, docente.getId());
+            if (docenteViejo != null) {
+                em.remove(docenteViejo);
+                em.getTransaction().commit();
+                return true;
+            }else { return false;}
+        }catch (Exception e){
+            return false;
+        }
+    }
 }
 

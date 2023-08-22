@@ -12,8 +12,11 @@ import java.util.List;
 import static Persistencia.InstitutoPersis.traerInstitutos;
 
 public class UnidadPersistencia {
-    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
 
+    public EntityManagerFactory getEmf() {
+        return emf;
+    }
 
     public UnidadPersistencia() {};
 
@@ -89,5 +92,19 @@ public class UnidadPersistencia {
         List<Cargo> cargos = CargoPersis.traerTodosCargos(emf,instituto);
         ObservableList<Cargo> retorno = FXCollections.observableArrayList(cargos);
         return retorno;
+    }
+    public boolean updateCargo(Cargo cargo){return CargoPersis.editarCargo(emf,cargo);}
+
+    public boolean eliminarCargo(Cargo cargo){
+        if (AsignaturaPersis.ExisteAsignatura(emf,cargo.getInstituto(),cargo.getDocente())){
+            return false;
+        }else{
+            if (CargoPersis.contarCargoDocente(emf, cargo.getDocente())){
+                return CargoPersis.eliminarCargo(emf, cargo);
+            }else{
+                CargoPersis.eliminarCargo(emf, cargo);
+                return DocentePersis.eliminarDocente(emf,cargo.getDocente());
+            }
+        }
     }
 }

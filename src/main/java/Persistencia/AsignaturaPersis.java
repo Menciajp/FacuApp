@@ -5,13 +5,14 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
 import objetos.Asignatura;
+import objetos.Docente;
 import objetos.Instituto;
 
 import java.util.List;
 
-public class AsignaturaPersis {
+class AsignaturaPersis {
 
-    public static boolean existeAsignatura(EntityManagerFactory emf , String nombre, Instituto instituto){
+    protected static boolean existeAsignatura(EntityManagerFactory emf , String nombre, Instituto instituto){
         try {
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -28,7 +29,7 @@ public class AsignaturaPersis {
         }
     }
 
-    public static List<Asignatura> traerTodasAsignaturas(EntityManagerFactory emf , Instituto instituto){
+    protected static List<Asignatura> traerTodasAsignaturas(EntityManagerFactory emf , Instituto instituto){
         try {
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -43,8 +44,21 @@ public class AsignaturaPersis {
         }
     }
 
-
-    public static boolean crearAsignatura(EntityManagerFactory emf, Asignatura asignatura){
+    protected static boolean ExisteAsignatura(EntityManagerFactory emf, Instituto instituto, Docente docente){
+        try {
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();
+            TypedQuery<Asignatura> query = em.createQuery("SELECT x FROM Asignatura x WHERE x.instituto = :insti AND x.docente = :docente", Asignatura.class);
+            query.setParameter("insti", instituto);
+            query.setParameter("docente", docente);
+            em.getTransaction().commit();
+            em.close();
+            return  (query.getResultList()!=null);
+        }catch (Exception e){
+            return false;
+        }
+    }
+    protected static boolean crearAsignatura(EntityManagerFactory emf, Asignatura asignatura){
         try {
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -58,7 +72,7 @@ public class AsignaturaPersis {
         }
     }
 
-    public static boolean editarAsignatura(EntityManagerFactory emf, Asignatura asignatura){
+    protected static boolean editarAsignatura(EntityManagerFactory emf, Asignatura asignatura){
         try {
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -75,7 +89,7 @@ public class AsignaturaPersis {
         }
     }
 
-    public  static boolean borrarAsignatura(EntityManagerFactory emf, Asignatura asignatura){
+    protected static boolean borrarAsignatura(EntityManagerFactory emf, Asignatura asignatura){
 
         try {
             EntityManager em = emf.createEntityManager();

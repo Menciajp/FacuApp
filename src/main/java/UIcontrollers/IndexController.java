@@ -50,6 +50,7 @@ public class IndexController extends Controladora {
     private TextField tf_usuariosu;
 
 
+
     //cambio de login a singUp
     public void cambiarPantalla(ActionEvent event){
         if (event.getSource() == btn_registrate){
@@ -65,8 +66,7 @@ public class IndexController extends Controladora {
     public void crearUsuario() throws IOException {
         if(pf_contraseñasu.getText().length()>3) {
             Usuario user = new Usuario(tf_usuariosu.getText(), pf_contraseñasu.getText());
-            UnidadPersistencia up = new UnidadPersistencia();
-            if (up.nuevoUsuario(user)) {
+            if (getUp().nuevoUsuario(user)) {
                 Alertas.avisoAccion("Usuario creado correctamente!");
                 bp_registro.setVisible(false);
                 bp_login.setVisible(true);
@@ -81,8 +81,7 @@ public class IndexController extends Controladora {
     public void login() throws IOException {
         if(!(pf_contraseñalg.getText().isEmpty()||tf_usuariolg.getText().isEmpty())){
             Usuario user = new Usuario(tf_usuariolg.getText(),pf_contraseñalg.getText());
-            UnidadPersistencia up = new UnidadPersistencia();
-            Usuario usuario = up.verUsuario(user);
+            Usuario usuario = getUp().verUsuario(user);
             if (usuario != null){
                 Alertas.avisoAccion("Bienvenido");
                 cambioEscena("../fxml/menu.fxml");
@@ -101,19 +100,13 @@ public class IndexController extends Controladora {
 
         Parent root = loader.load();
 
-        // Obtener la instancia de la controladora de la ventana cargada
-        MenuController menuController = loader.getController();
-        menuController.setStage(getStage());
         // Crear una nueva escena
         Scene scene = new Scene(root);
 
-        // Obtener el escenario actual
-        Stage stage = getStage();
-
         // Establecer la nueva escena en el escenario
-        stage.setScene(scene);
-        stage.show();
-        stage.centerOnScreen();
+        getStage().setScene(scene);
+        getStage().show();
+        getStage().centerOnScreen();
     }
 
 

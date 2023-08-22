@@ -1,5 +1,6 @@
 package UIcontrollers;
 
+
 import Persistencia.UnidadPersistencia;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -26,6 +27,7 @@ import java.util.List;
 public class GestionController extends Controladora{
     private Instituto instituto;
     private  Asignatura asignatura;
+    private  Cargo cargo;
 
     private  ObservableList<Docente> listaDocentes;
     private ObservableList<Asignatura> listaAsignaturas = FXCollections.observableArrayList();
@@ -180,29 +182,32 @@ public class GestionController extends Controladora{
         btn_modifCarg.setOnAction(event -> {mostrarPane(
                 btn_modifCarg,pn_modifCargo);
                 actualizarTablaCargos();
+                configTvCargoListener();
         });
+        btn_updateCargo.setOnAction(event ->{updateCargo();});
+
+        btn_eliminarCargo.setOnAction(event -> {deleteCargo();});
     }
 
 
 
     @FXML
     private void inscribirDocente(){
-        UnidadPersistencia up = new UnidadPersistencia();
         if (camposCompletos()){
-            if (up.existeDocente(tf_dni.getText())) {
+            if (getUp().existeDocente(tf_dni.getText())) {
                 System.out.println("existe docente");
-                Docente docente = up.traerDocente(tf_dni.getText());
-                if (up.existeCargo(docente, instituto)) {
+                Docente docente = getUp().traerDocente(tf_dni.getText());
+                if (getUp().existeCargo(docente, instituto)) {
                     Alertas.avisoError("El docente ya existe en el sistema y tiene un cargo en este instituto.");
                 } else {
-                    if (up.crearCargo(Integer.parseInt(tf_hrCargo.getText()), docente, instituto)) {
+                    if (getUp().crearCargo(Integer.parseInt(tf_hrCargo.getText()), docente, instituto)) {
                         Alertas.avisoAccion("Se creo el cargo para el docente existente.");
                     }
                 }
             } else {
-                up.crearDocente(tf_dni.getText(),tf_nombre.getText(),tf_apellido.getText(), Date.valueOf(dp_fechNac.getValue()),tf_dirNotif.getText());
-                Docente docente = up.traerDocente(tf_dni.getText());
-                up.crearCargo(Integer.parseInt(tf_hrCargo.getText()), docente, instituto);
+                getUp().crearDocente(tf_dni.getText(),tf_nombre.getText(),tf_apellido.getText(), Date.valueOf(dp_fechNac.getValue()),tf_dirNotif.getText());
+                Docente docente = getUp().traerDocente(tf_dni.getText());
+                getUp().crearCargo(Integer.parseInt(tf_hrCargo.getText()), docente, instituto);
                 Alertas.avisoAccion("Docente y cargo creados correctamente.");
             }
         }
@@ -215,11 +220,11 @@ public class GestionController extends Controladora{
         lbl_nombreInsti.setText(instituto.getNombreInstituto());
     }
     private boolean camposCompletos(){
-        if (tf_hrCargo.getText().isEmpty()
-            || tf_dni.getText().isEmpty()
-            || tf_apellido.getText().isEmpty()
-            || tf_nombre.getText().isEmpty()
-            || dp_fechNac.toString().isEmpty()){
+        if (tf_hrCargo.getText().isBlank()
+            || tf_dni.getText().isBlank()
+            || tf_apellido.getText().isBlank()
+            || tf_nombre.getText().isBlank()
+            || dp_fechNac.toString().isBlank()){
             Alertas.avisoError("Complete todos los campos");
             return false;
         }else if (tf_hrCargo.getText().matches("^[0-9]*$") && tf_dni.getText().matches("^[0-9]*$")){
@@ -239,10 +244,9 @@ public class GestionController extends Controladora{
         tv_docentes.setItems(listaDocentes);
     }
     private void crearAsignatura(){
-        UnidadPersistencia up = new UnidadPersistencia();
-        if (tf_nombreAsignatura.getText().isEmpty() || ta_descripcion.getText().isEmpty()) {
+        if (tf_nombreAsignatura.getText().isBlank() || ta_descripcion.getText().isBlank()) {
             Alertas.avisoError("Complete todos los campos.");
-        } else if (up.existeAsignatura(tf_nombreAsignatura.getText(), instituto)) {
+        } else if (getUp().existeAsignatura(tf_nombreAsignatura.getText(), instituto)) {
             Alertas.avisoError("Ya existe la asignatura");
 
         }else{
@@ -255,7 +259,7 @@ public class GestionController extends Controladora{
                     "\n" + "Descripción: " + ta_descripcion.getText());
             decision.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK){
-                    if( up.crearAsignatura(tf_nombreAsignatura.getText(),
+                    if( getUp().crearAsignatura(tf_nombreAsignatura.getText(),
                         listaDocentes.get(tv_docentes.getFocusModel().getFocusedIndex()),
                         ta_descripcion.getText(), instituto)){
                             Alertas.avisoAccion("Asignatura creada.");
@@ -267,23 +271,16 @@ public class GestionController extends Controladora{
         }
     }
     private void mostrarPane(Button botonSelec, Pane paneSelec){
-        Button botones[] = {btn_inscribirDoc,btn_crearAsig,btn_modifAsig,btn_modifCarg};
-        Pane panes[] = {pn_inscribirDocente,pn_crearAsignatura,pn_modifAsignatura,pn_modifCargo};
+        Button[] botones = {btn_inscribirDoc, btn_crearAsig, btn_modifAsig, btn_modifCarg};
+        Pane[] panes = {pn_inscribirDocente, pn_crearAsignatura, pn_modifAsignatura, pn_modifCargo};
+
         for (Button boton :
              botones) {
-            if (boton == botonSelec){
-                boton.setDisable(true);
-            }else{
-                boton.setDisable(false);
-            }
+            boton.setDisable(boton == botonSelec);
         }
         for (Pane pane:
              panes) {
-            if (pane == paneSelec){
-                pane.setVisible(true);
-            }else{
-                pane.setVisible(false);
-            }
+            pane.setVisible(pane == paneSelec);
         }
     }
     private Docente ventanaDocentes() throws IOException {
@@ -306,15 +303,14 @@ public class GestionController extends Controladora{
     }
     private void configComboAsignaturas(){
         listaAsignaturas.clear();
-        UnidadPersistencia up = new UnidadPersistencia();
-        List<Asignatura>asignaturas = up.traerTodasAsignaturas(instituto);
+        List<Asignatura>asignaturas = getUp().traerTodasAsignaturas(instituto);
         ObservableList<String>listaNombre = FXCollections.observableArrayList();
         for (Asignatura asignatura:
              asignaturas) {
             listaAsignaturas.add(asignatura);
             listaNombre.add(asignatura.getNombre_asignatura());
         }
-        Collections.sort(listaAsignaturas, Comparator.comparing(Asignatura::getNombre_asignatura));
+        listaAsignaturas.sort(Comparator.comparing(Asignatura::getNombre_asignatura));
         Collections.sort(listaNombre);
         cb_asignaturas.setItems(listaNombre);
         ta_modDescAsig.setText("");
@@ -325,29 +321,34 @@ public class GestionController extends Controladora{
     private void configComboListener(){
         cb_asignaturas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
+                btn_eliminarAsig.setDisable(false);
+                btn_updateAsig.setDisable(false);
+                btn_cambiarDoc.setDisable(false);
                 int index = cb_asignaturas.getSelectionModel().getSelectedIndex();
                 asignatura = listaAsignaturas.get(index);
                 tf_modNombreAsig.setText(asignatura.getNombre_asignatura());
                 ta_modDescAsig.setText(asignatura.getDescripcion());
                 lbl_modDocenteAsig.setText(asignatura.getDocente().getNombre() + " " + asignatura.getDocente().getApellido());
+            }else{
+                btn_eliminarAsig.setDisable(true);
+                btn_updateAsig.setDisable(true);
+                btn_cambiarDoc.setDisable(true);
             }
             });
     }
     private void updateAsignatura(){
-        if (tf_modNombreAsig.getText().isEmpty() && ta_modDescAsig.getText().isEmpty()){
+        if (tf_modNombreAsig.getText().isBlank() && ta_modDescAsig.getText().isBlank()){
             Alertas.avisoError("Complete todos los campos.");
         }else{
             asignatura.setNombre_asignatura(tf_modNombreAsig.getText());
             asignatura.setDescripcion(ta_modDescAsig.getText());
-            UnidadPersistencia up = new UnidadPersistencia();
-            if(up.updateAsignatura(asignatura)){
+            if(getUp().updateAsignatura(asignatura)){
                 Alertas.avisoAccion("Modificacion exitosa");
                 configComboAsignaturas();
             }
         }
     }
     private void deleteAsignatura(){
-        UnidadPersistencia up = new UnidadPersistencia();
         Alert decision = new Alert(Alert.AlertType.CONFIRMATION);
         decision.setHeaderText("Seguro que desea borrar la siguente asignatura?");
         decision.setContentText(
@@ -357,7 +358,7 @@ public class GestionController extends Controladora{
                         "\n" + "Descripción: " + asignatura.getDescripcion());
         decision.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                if (up.deleteAsignatura(asignatura)) {
+                if (getUp().deleteAsignatura(asignatura)) {
                     Alertas.avisoAccion("Asignatura borrada correctamente");
                     configComboAsignaturas();
                 }else{Alertas.avisoAccion("Acci[on cancelada");}
@@ -367,8 +368,7 @@ public class GestionController extends Controladora{
     }
 
     private void actualizarTablaCargos(){
-        UnidadPersistencia up = new UnidadPersistencia();
-        listaCargos = up.traerTodosCargos(instituto);
+        listaCargos = getUp().traerTodosCargos(instituto);
         tc_modifCnombre.setCellValueFactory(valor -> {
             Docente docente = valor.getValue().getDocente();
             return new SimpleStringProperty(docente.getNombre());
@@ -383,6 +383,43 @@ public class GestionController extends Controladora{
         });
         tc_modifChoras.setCellValueFactory(new PropertyValueFactory<>("horas"));
         tv_modifCargos.setItems(listaCargos);
+        tv_modifCargos.getSelectionModel().clearSelection();
+    }
+    private void configTvCargoListener(){
+        tv_modifCargos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                int index = tv_modifCargos.getSelectionModel().getSelectedIndex();
+                btn_updateCargo.setDisable(false);
+                btn_eliminarCargo.setDisable(false);
+                cargo = listaCargos.get(index);
+                lbl_modifCdocente.setText(cargo.getDocente().getNombre() + " " + cargo.getDocente().getApellido());
+                tf_modifChoras.setText(String.valueOf(cargo.getHoras()));
+            }else{
+                btn_updateCargo.setDisable(true);
+                btn_eliminarCargo.setDisable(true);
+                lbl_modifCdocente.setText("");
+                tf_modifChoras.setText("");
+            }
+        });
+    }
+    private void updateCargo(){
+        if(tf_modifChoras.getText().isBlank()){
+            Alertas.avisoError("Complete el campo de hora.");
+        }else{
+            cargo.setHoras(Integer.parseInt(tf_modifChoras.getText()));
+            if(getUp().updateCargo(cargo)){
+                Alertas.avisoAccion("Cargo actualizado");
+                actualizarTablaCargos();
+            };
+        }
+    }
+    private void deleteCargo(){
+        if(getUp().eliminarCargo(cargo)){
+            Alertas.avisoAccion("El cargo se a eliminado con exito");
+            actualizarTablaCargos();
+        }else{
+            Alertas.avisoError("El docente tiene cargos en este instituto.");
+        };
     }
 
     @Override
@@ -391,19 +428,14 @@ public class GestionController extends Controladora{
 
         Parent root = loader.load();
 
-        // Obtener la instancia de la controladora de la ventana cargada
-        MenuController menuController = loader.getController();
-        menuController.setStage(getStage());
         // Crear una nueva escena
         Scene scene = new Scene(root);
 
-        // Obtener el escenario actual
-        Stage stage = getStage();
 
         // Establecer la nueva escena en el escenario
-        stage.setScene(scene);
-        stage.show();
-        stage.centerOnScreen();
+        getStage().setScene(scene);
+        getStage().show();
+        getStage().centerOnScreen();
     }
 
 }
