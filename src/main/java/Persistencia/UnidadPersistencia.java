@@ -57,8 +57,12 @@ public class UnidadPersistencia {
 
     public ObservableList<Docente> traerTodosDocentes(Instituto instituto){
         List<Docente> docentes = DocentePersis.traerTodos(emf,instituto);
-        ObservableList<Docente> retorno = FXCollections.observableArrayList(docentes);
-        return retorno;
+        return FXCollections.observableArrayList(docentes);
+    }
+
+    public ObservableList<Docente> TraerdocentesOtroInstituto(Instituto instituto){
+        List<Docente> docentes = DocentePersis.TraerdocentesOtroInstituto(emf,instituto);
+        return FXCollections.observableArrayList(docentes);
     }
     public boolean existeCargo(Docente docente,Instituto instituto){
         return  CargoPersis.existeCargo(emf, docente, instituto);

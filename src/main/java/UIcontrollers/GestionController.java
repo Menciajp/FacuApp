@@ -30,6 +30,7 @@ public class GestionController extends Controladora{
     private  Cargo cargo;
 
     private  ObservableList<Docente> listaDocentes;
+    private ObservableList<Docente> listaDocenteAjeno;
     private ObservableList<Asignatura> listaAsignaturas = FXCollections.observableArrayList();
     private ObservableList<Cargo> listaCargos = FXCollections.observableArrayList();
 
@@ -68,6 +69,8 @@ public class GestionController extends Controladora{
 
     @FXML
     private Button btn_updateCargo;
+    @FXML
+    private Button btn_otroDocente;
 
     @FXML
     private ComboBox<String> cb_asignaturas;
@@ -153,11 +156,28 @@ public class GestionController extends Controladora{
         btn_crearAsig.setOnAction(event -> {
             actualizarTablaDocentes();
             mostrarPane(btn_crearAsig,pn_crearAsignatura);});
+        btn_crear.setOnAction(event -> {crearAsignatura();});
         //botones de inscribir docente
         btn_inscribirDoc.setOnAction(event -> {
             mostrarPane(btn_inscribirDoc,pn_inscribirDocente);
+            actualizarTablaDocentes();
         });
-        btn_crear.setOnAction(event -> {crearAsignatura();});
+        btn_otroDocente.setOnAction(event -> {
+            try {
+                Docente docente = ventanaDocentes(listaDocenteAjeno);
+                if (docente != null) {
+                    tf_nombre.setText(docente.getNombre());
+                    tf_apellido.setText(docente.getApellido());
+                    tf_dni.setText(docente.getDni());
+                    dp_fechNac.setValue(docente.getFechNac().toLocalDate());
+                    tf_dirNotif.setText(docente.getNotifDir());
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+
         //Botones de modificar asignatura.
         btn_modifAsig.setOnAction(event -> {
             configComboAsignaturas();
@@ -166,7 +186,7 @@ public class GestionController extends Controladora{
         btn_cambiarDoc.setOnAction(event -> {
             actualizarTablaDocentes();
             try {
-                Docente docente = ventanaDocentes();
+                Docente docente = ventanaDocentes(listaDocentes);
                 if (docente != null){
                     asignatura.setDocente(docente);
                     lbl_modDocenteAsig.setText(asignatura.getDocente().getNombre() + " " + asignatura.getDocente().getApellido());
@@ -236,8 +256,8 @@ public class GestionController extends Controladora{
 
     }
     private void actualizarTablaDocentes(){
-        UnidadPersistencia up = new UnidadPersistencia();
-        listaDocentes = up.traerTodosDocentes(instituto);
+        listaDocenteAjeno = getUp().TraerdocentesOtroInstituto(instituto);
+        listaDocentes = getUp().traerTodosDocentes(instituto);
         tc_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         tc_apellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         tc_dni.setCellValueFactory(new PropertyValueFactory<>("dni"));
@@ -283,12 +303,12 @@ public class GestionController extends Controladora{
             pane.setVisible(pane == paneSelec);
         }
     }
-    private Docente ventanaDocentes() throws IOException {
+    private Docente ventanaDocentes(ObservableList<Docente> lista) throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/ventanaDocentes.fxml"));
         Parent root = loader.load();
         VentanaDocController ventana = loader.getController();
-        ventana.setDocentes(listaDocentes);
+        ventana.setDocentes(lista);
         ventana.setStage(stage);
         Scene scene = new Scene(root);
         stage.setScene(scene);

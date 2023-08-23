@@ -3,10 +3,9 @@ package Persistencia;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
-import objetos.Cargo;
 import objetos.Docente;
 import objetos.Instituto;
-import org.hibernate.mapping.Selectable;
+
 
 import java.util.List;
 
@@ -35,7 +34,7 @@ import java.util.List;
             System.out.println(docente.getId());
             em.getTransaction().commit();
             em.close();
-            return (docente != null);
+            return true;
         }catch (Exception e){
             System.out.println("No existe");
             return false;
@@ -77,11 +76,29 @@ import java.util.List;
             if (docenteViejo != null) {
                 em.remove(docenteViejo);
                 em.getTransaction().commit();
+                em.close();
                 return true;
-            }else { return false;}
+            }else {
+                return false;
+            }
         }catch (Exception e){
             return false;
         }
     }
+
+    protected static List<Docente> TraerdocentesOtroInstituto(EntityManagerFactory emf, Instituto instituto){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Docente> query = em.createQuery("SELECT d FROM Docente d WHERE " +
+                "d NOT IN (SELECT c.docente FROM Cargo c WHERE c.instituto = :instituto)", Docente.class);
+        query.setParameter("instituto", instituto);
+        em.getTransaction().commit();
+        List<Docente> docentes = query.getResultList();
+        em.close();
+        return docentes;
+
+    }
+
+
 }
 

@@ -17,7 +17,7 @@ public class Asignatura extends Entidad{
     private Instituto instituto;
 
 
-    public Asignatura(){};
+    public Asignatura(){}
     public Asignatura(String nombre_asignatura, String descripcion, Docente docente, Instituto instituto) {
         this.nombre_asignatura = nombre_asignatura;
         this.descripcion = descripcion;
