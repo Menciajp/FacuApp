@@ -52,8 +52,10 @@ class AsignaturaPersis {
             query.setParameter("insti", instituto);
             query.setParameter("docente", docente);
             em.getTransaction().commit();
+            Asignatura asignatura = query.getSingleResult();
             em.close();
-            return  (query.getResultList()!=null);
+            System.out.println(asignatura.getId());
+            return true;
         }catch (Exception e){
             return false;
         }
@@ -71,7 +73,6 @@ class AsignaturaPersis {
             return false;
         }
     }
-
     protected static boolean editarAsignatura(EntityManagerFactory emf, Asignatura asignatura){
         try {
             EntityManager em = emf.createEntityManager();

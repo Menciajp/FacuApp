@@ -10,6 +10,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -37,10 +39,19 @@
                            <FlowPane.margin>
                               <Insets bottom="15.0" />
                            </FlowPane.margin></Button>
-                        <Button fx:id="btn_modifCarg" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" styleClass="btnFondoOscuro" text="Modificar cargo" />
+                        <Button fx:id="btn_modifCarg" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" styleClass="btnFondoOscuro" text="Modificar cargo">
+                           <FlowPane.margin>
+                              <Insets bottom="15.0" />
+                           </FlowPane.margin></Button>
+                        <Button fx:id="btn_verAC" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" styleClass="btnFondoOscuro" text="Ver asignaturas y cargos">
+                           <FlowPane.margin>
+                              <Insets bottom="15.0" />
+                           </FlowPane.margin>
+                        </Button>
+                        <Button fx:id="btn_verDocente" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" styleClass="btnFondoOscuro" text="Ver docentes" />
                         <Button fx:id="btn_selecInsti" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="200.0" styleClass="btnFondoOscuro" text="Seleccionar otro instituto">
                            <FlowPane.margin>
-                              <Insets top="150.0" />
+                              <Insets top="75.0" />
                            </FlowPane.margin>
                         </Button>
                      </children>
@@ -55,7 +66,7 @@
          <center>
             <Pane prefHeight="200.0" prefWidth="595.0" styleClass="fd-background" stylesheets="@../Css/general.css" BorderPane.alignment="CENTER">
                <children>
-                  <Pane fx:id="pn_inscribirDocente" layoutX="8.0" layoutY="10.0" prefHeight="447.0" prefWidth="544.0" styleClass="boxes">
+                  <Pane fx:id="pn_inscribirDocente" layoutX="8.0" layoutY="10.0" prefHeight="447.0" prefWidth="544.0" styleClass="boxes" visible="false">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" styleClass="lblAzul" text="Inscribir docente" />
                         <FlowPane alignment="CENTER" layoutX="45.0" layoutY="64.0" prefHeight="220.0" prefWidth="454.0">
@@ -296,6 +307,51 @@
                               <Insets right="2.0" />
                            </padding>
                         </FlowPane>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pn_bienvenida" layoutX="8.0" layoutY="10.0" prefHeight="447.0" prefWidth="544.0" styleClass="boxes">
+                     <children>
+                        <ImageView fitHeight="280.0" fitWidth="489.0" layoutX="28.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/Bienvenido.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pn_ver" layoutX="8.0" layoutY="10.0" prefHeight="447.0" prefWidth="544.0" styleClass="boxes" visible="false">
+                     <children>
+                        <Label layoutX="16.0" layoutY="14.0" styleClass="lblAzul" text="Asignaturas" />
+                        <TableView fx:id="tv_verAsignatura" layoutX="16.0" layoutY="33.0" prefHeight="200.0" prefWidth="512.0" styleClass="textField">
+                          <columns>
+                            <TableColumn fx:id="tc_verAnombre" prefWidth="130.0" text="Nombre" />
+                            <TableColumn fx:id="tc_verAdocente" prefWidth="192.0" text="Docente " />
+                              <TableColumn fx:id="tc_verAdescripcion" prefWidth="188.0" text="Descripción" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="16.0" layoutY="233.0" styleClass="lblAzul" text="Cargos" />
+                        <TableView fx:id="tv_verCargos" layoutX="16.0" layoutY="252.0" prefHeight="179.0" prefWidth="512.0" styleClass="textField">
+                          <columns>
+                            <TableColumn fx:id="tc_verCnombreDocente" prefWidth="227.0" text="Docente" />
+                            <TableColumn fx:id="tc_verCdniDocente" prefWidth="138.0" sortType="DESCENDING" text="DNI" />
+                              <TableColumn fx:id="tc_verChoras" prefWidth="146.0" text="Horas" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pn_verDocente" layoutX="8.0" layoutY="10.0" prefHeight="447.0" prefWidth="544.0" styleClass="boxes" visible="false">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" styleClass="lblAzul" text="Tabla de docentes" />
+                        <TableView fx:id="tv_verDocente" layoutX="15.0" layoutY="33.0" prefHeight="332.0" prefWidth="509.0" styleClass="textField-two">
+                          <columns>
+                            <TableColumn fx:id="tc_apellidoVd" prefWidth="75.0" text="Apellido" />
+                            <TableColumn fx:id="tc_nombreVd" prefWidth="143.0" text="Nombre" />
+                              <TableColumn fx:id="tc_fechaVd" prefWidth="136.0" text="Fecha de naciemiento" />
+                              <TableColumn fx:id="tc_contactoVd" prefWidth="79.0" text="Contacto" />
+                              <TableColumn fx:id="tc_dniVd" prefWidth="75.0" text="DNI" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btn_editarDocente" layoutX="212.0" layoutY="402.0" mnemonicParsing="false" styleClass="btnFondoClaro" text="Editar docente" />
+                        <Label fx:id="lbl_docenteSelec" alignment="CENTER" contentDisplay="CENTER" layoutX="148.0" layoutY="374.0" prefHeight="19.0" prefWidth="248.0" styleClass="lblAzul" text="No tiene un docente seleccionado" />
                      </children>
                   </Pane>
                </children></Pane>

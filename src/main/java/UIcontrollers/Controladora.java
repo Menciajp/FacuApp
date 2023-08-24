@@ -1,9 +1,8 @@
 package UIcontrollers;
 
 import Persistencia.UnidadPersistencia;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import objetos.Instituto;
+
 
 import java.io.IOException;
 

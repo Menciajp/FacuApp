@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ec26083-5826-4439-aead-804aea5b1c04" name="Changes" comment="3/8/2023 - 2">
+    <list default="true" id="9ec26083-5826-4439-aead-804aea5b1c04" name="Changes" comment="3/8/2023 - 3">
+      <change afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/VentanaEditDocController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/ventanaEditarDocente.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/imagenes/Bienvenido.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Persistencia/AsignaturaPersis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Persistencia/AsignaturaPersis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Persistencia/DocentePersis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Persistencia/DocentePersis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Persistencia/UnidadPersistencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Persistencia/UnidadPersistencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UIcontrollers/Controladora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/Controladora.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UIcontrollers/GestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/GestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/objetos/Asignatura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objetos/Asignatura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/objetos/Cargo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/objetos/Cargo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UIcontrollers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UIcontrollers/MenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/gestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/gestion.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +34,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2TRmG4zOhlkwzPI1Ioskk973BcN" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -51,6 +59,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Usuario\Documents\JavaFinal\FacuApp\src\main\resources" />
       <recent name="C:\Users\Usuario\Documents\JavaFinal\FacuApp\src\main\java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Usuario\Documents\JavaFinal\FacuApp\src\main\resources\imagenes" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="UIcontrollers" />
@@ -124,23 +135,20 @@
       <option name="project" value="LOCAL" />
       <updated>1692743145483</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="3/8/2023 - 3">
+      <created>1692750442143</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1692750442143</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="3/8/2023" />
     <MESSAGE value="3/8/2023 - 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/8/2023 - 2" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/UIcontrollers/GestionController.java</url>
-          <line>445</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="3/8/2023 - 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="3/8/2023 - 3" />
   </component>
 </project>

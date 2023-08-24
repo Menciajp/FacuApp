@@ -99,6 +99,24 @@ import java.util.List;
 
     }
 
+    protected static boolean ActualizarDocente(EntityManagerFactory emf, Docente docente){
+        try {
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();
+            Docente docenteViejo = em.find(Docente.class,docente.getId());
+            docenteViejo.setNombre(docente.getNombre());
+            docenteViejo.setApellido(docente.getApellido());
+            docenteViejo.setDni(docente.getDni());
+            docenteViejo.setFechNac(docente.getFechNac());
+            docenteViejo.setNotifDir(docente.getNotifDir());
+            em.getTransaction().commit();
+            em.close();
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 
 }
 

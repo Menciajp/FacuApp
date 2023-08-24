@@ -1,6 +1,5 @@
 package UIcontrollers;
 
-import Persistencia.UnidadPersistencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,10 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+
 import objetos.Instituto;
 
 import java.io.IOException;
+
 import java.util.List;
 
 public class MenuController extends Controladora {

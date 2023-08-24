@@ -1,7 +1,5 @@
 import Persistencia.UnidadPersistencia;
-import UIcontrollers.Alertas;
 import UIcontrollers.Controladora;
-import UIcontrollers.IndexController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static UIcontrollers.Controladora.setStage;
+import static UIcontrollers.Controladora.setUp;
 
 
 public  class App extends Application {
@@ -22,9 +22,9 @@ public  class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/index.fxml"));
         Parent root = fxmlLoader.load();
         scene = new Scene(root);
-        Controladora.setStage(stage);
+        setStage(stage);
         UnidadPersistencia up = new UnidadPersistencia();
-        Controladora.setUp(up);
+        setUp(up);
         stage.setScene(scene);
         stage.setTitle("FacuApp");
         stage.show();
@@ -34,7 +34,9 @@ public  class App extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
+        Controladora.getUp().getEmf().isOpen();
         Controladora.getUp().getEmf().close();
+        Controladora.getUp().getEmf().isOpen();
     }
 
     public static void main(String[] args){
